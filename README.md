@@ -17,7 +17,7 @@ Details for Milestone are available on Canvas (left sidebar, Course Project).
 ## Team Members
 
 - Person 1: one sentence about you!
-- Person 2: one sentence about you!
+- Person 2: I'm Sydney and I'm in my 3rd year in the Bachelor of Management program. My career goal is to become an accountant and this course is a necessary step towards reaching my goal, I am extremely new to this but I am excited to learn.
 - Person 3: one sentence about you!
 
 ## Images
