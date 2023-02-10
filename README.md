@@ -7,8 +7,7 @@
 Details for Milestone are available on Canvas (left sidebar, Course Project).
 
 ## Describe your topic/interest in about 150-200 words
-
-{Add your stuff here}
+this 
 
 ## Describe your dataset in about 150-200 words
 
@@ -18,7 +17,7 @@ Details for Milestone are available on Canvas (left sidebar, Course Project).
 
 - Person 1: one sentence about you!
 - Person 2: one sentence about you!
-- Person 3: one sentence about you!
+- Person 3: Hello, I'm Sky and I'm a computer science major with a data science minor at UBC. I'm interested in data science and I'm excited to learn more about it in this course!
 
 ## Images
 
