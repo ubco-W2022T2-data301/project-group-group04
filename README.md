@@ -1,4 +1,4 @@
-# Group YY - {Short snappy Title of your project}
+# Group 04 - Regional Air Quality and its Effect on Asthma Prevalence in the US
 
 - Your title can change over time.
 
@@ -16,7 +16,7 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 
 ## Team Members
 
-- Person 1: one sentence about you!
+- Person 1: I'm Gavin Kendal-Freedman, a 3rd year at UBC Okanagan, Majoring in Chemistry, and taking a minor in Data Science, and I'm a dual US-Canadian citizen, originally from Seattle, WA, in the US, and I am a strong environmentalist.
 - Person 2: I'm Sydney and I'm in my 3rd year in the Bachelor of Management program. My career goal is to become an accountant and this course is a necessary step towards reaching my goal, I am extremely new to this but I am excited to learn.
 - Person 3: Hello, I'm Sky and I'm a computer science major with a data science minor at UBC. I'm interested in data science and I'm excited to learn more about it in this course!
 
@@ -29,6 +29,3 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 ## References
 
 {Add your stuff here}
-
-
-
