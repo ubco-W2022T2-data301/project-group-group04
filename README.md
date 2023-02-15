@@ -7,7 +7,8 @@
 Details for Milestone are available on Canvas (left sidebar, Course Project).
 
 ## Describe your topic/interest in about 150-200 words
-this
+
+Our group will be analyzing the air quality among different locations within the United States and we will each be focusing on specific possible factors effecting the varying AQI levels. There are a large variety of locations outlined in our dataset and we will be narrowing in on locations based off of proximity to large bodies of water, landlocked metro areas, rural, urban, and industrialized areas. With these types of areas we will proceed to analyze any potential correlations that they have with amounts of chemical(s) that are present and are produced from various sources. With this we will be able to further explore and understand if there are any differences in air quality between rural vs urban locations, coastal vs central land locations, and industrialized vs rural. In addition to any findings and correlations we may determine, we would also like to assess any relations between AQI levels and asthma rates.
 
 ## Describe your dataset in about 150-200 words
 
@@ -16,7 +17,7 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 ## Team Members
 
 - Person 1: one sentence about you!
-- Person 2: one sentence about you!
+- Person 2: I'm Sydney and I'm in my 3rd year in the Bachelor of Management program. My career goal is to become an accountant and this course is a necessary step towards reaching my goal, I am extremely new to this but I am excited to learn.
 - Person 3: Hello, I'm Sky and I'm a computer science major with a data science minor at UBC. I'm interested in data science and I'm excited to learn more about it in this course!
 
 ## Images
