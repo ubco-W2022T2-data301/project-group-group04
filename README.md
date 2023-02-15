@@ -1,4 +1,4 @@
-# Group YY - {Short snappy Title of your project}
+# Group 04 - Regional Air Quality and its Effect on Asthma Prevalence in the US
 
 - Your title can change over time.
 
