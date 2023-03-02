@@ -2,6 +2,10 @@
 
 - Your title can change over time.
 
+## Important
+
+To run this code locally, make sure at a minium all the packages listed in [requirements.txt](requirements.txt) are installed using your package manager of choice (`pip`, `conda`, `poetry`, etc), on at least python 3.9 or higher. However do note that installing [geoplot](https://residentmario.github.io/geoplot) may require installing system dependencies, such as `libgeos-dev` on linux, and may require [pillow](https://pillow.readthedocs.io/en/stable/) to be installed separately.
+
 ## Milestones
 
 Details for Milestone are available on Canvas (left sidebar, Course Project).
