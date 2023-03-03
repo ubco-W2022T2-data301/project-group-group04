@@ -17,7 +17,7 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 ## Team Members
 
 - Person 1: I'm Gavin Kendal-Freedman, a 3rd year at UBC Okanagan, Majoring in Chemistry, and taking a minor in Data Science, and I'm a dual US-Canadian citizen, originally from Seattle, WA, in the US, and I am a strong environmentalist.
-- Person 3: Hello, I'm Sky and I'm a computer science major with a data science minor at UBC. I'm interested in data science and I'm excited to learn more about it in this course!
+- Person 2: Hello, I'm Sky and I'm a computer science major with a data science minor at UBC. I'm interested in data science and I'm excited to learn more about it in this course!
 
 ## Images
 
