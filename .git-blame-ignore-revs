@@ -1,0 +1,21 @@
+# Commit SHAs in this file are ignored in git blame views
+
+# When adding a new SHA, please add a comment with the PR number/reason for the sha to be ignored
+
+# =============
+
+# see #9 for details, does not contain any important blame info
+
+29e9101d75357202d79dfa34bde2d5d6c27d0ab7
+0695623b300de24e9ee9554e222004be78bdf3e7
+
+# =============
+
+# Merge commits
+
+b5c91592f83de86ea0b018414910059491e467aa
+9b203cc8841b133f21a7bc82dd04e88443b8e3d2
+f25e464ec07366a21217986c183888a33c2e43c3
+899b26124d605e9e037bf335a3809a5f6c262384
+2a7ad6c963c8de9590391bb960a5e6765a57b25d
+b704797d3b13e2a0b1262849e227448c6b49c681
