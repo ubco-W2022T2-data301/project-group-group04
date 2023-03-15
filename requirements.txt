@@ -4,3 +4,4 @@ jupyterlab>=3,<4
 numpy>1,<2
 pandas>=1,<2
 seaborn~=0.12.2
+tomli==2.0.1; python_version < '3.11'
