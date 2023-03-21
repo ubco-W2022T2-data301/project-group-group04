@@ -16,6 +16,7 @@ __all__: tuple[str, ...] = (
     "load_and_process_healthdata",
     "load_and_process",
     "load_preprocessed_1",
+    "load_preprocessed_2",
     "load_toml",
 )
 
@@ -93,6 +94,27 @@ def load_preprocessed_1(
         left_on="CBSAFP",
     )
 
+
+def load_preprocessed_2(
+    data: pathlib.Path,
+    *,
+    gpd_kwargs: dict = dict(),
+) -> gpd.GeoDataFrame:
+    """Load already processed data that is formatted and cleaned to be useable here
+
+    Parameters
+    ----------
+    data : pathlib.Path
+        The geojson file to load the health data from.
+    gpd_kwargs : dict, optional
+        Optional keyword arguments to pass to gpd.read_file, like engine arguments, by default dict()
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        The loaded preprocessed data
+    """
+    return gpd.read_file(data, **gpd_kwargs)  # type: ignore
 
 def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFrame:
     """Load and do basic processing on the data to remove extraneous information for the health data
