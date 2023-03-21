@@ -1,17 +1,30 @@
 # coding=utf-8
 """A collection of project functions for Gavin's portion of the project"""
-import sys
+from __future__ import annotations
 
-
-from functools import cache
 import pathlib
-from typing import TypedDict
+import sys
+from functools import cache
+from importlib.util import find_spec
+from typing import Final, TypedDict
+
 import pandas as pd
 import geopandas as gpd
 import numpy as np
 
+if sys.version_info >= (3, 11):
+    from tomllib import load as load_toml
+else:
+    from tomli import load as load_toml  # cspell: ignore tomli
+
+
 __all__: tuple[str, ...] = (
     "PROJECT_ROOT",
+    "ARROW_INSTALLED",
+    "PYOGRIO_INSTALLED",
+    "NUMBA_INSTALLED",
+    "GPD_READ_KWARGS",
+    "GPD_WRITE_KWARGS",
     "is_heavy_metal",
     "load_and_process_healthdata",
     "load_and_process",
@@ -19,11 +32,6 @@ __all__: tuple[str, ...] = (
     "load_preprocessed_2",
     "load_toml",
 )
-
-if sys.version_info >= (3, 11):
-    from tomllib import load as load_toml
-else:
-    from tomli import load as load_toml  # cspell: ignore tomli
 
 
 class Loading(TypedDict):
@@ -34,6 +42,23 @@ class Loading(TypedDict):
 class Config(TypedDict):
     heavy_metals: list[str]
     Loading: Loading
+
+
+ARROW_INSTALLED: Final[bool] = bool(find_spec("pyarrow"))
+PYOGRIO_INSTALLED: Final[bool] = bool(find_spec("pyogrio"))
+NUMBA_INSTALLED: Final[bool] = bool(find_spec("numba"))
+if PYOGRIO_INSTALLED:  # Optional perf enhancements
+    GPD_READ_KWARGS: Final[dict[str, str | bool]] = {
+        "engine": "pyogrio",
+        "use_arrow": ARROW_INSTALLED,
+    }
+    GPD_WRITE_KWARGS: Final[dict[str, str]] = {"engine": "pyogrio"}
+else:
+    GPD_READ_KWARGS: Final[dict[str, str | bool]] = {}  # type: ignore
+    GPD_WRITE_KWARGS: Final[dict[str, str]] = {}  # type: ignore
+
+if NUMBA_INSTALLED:  # Optional perf enhancements
+    pd.set_option("compute.use_numba", True)
 
 
 PROJECT_ROOT: pathlib.Path = pathlib.Path(__file__).parent.parent.parent.resolve()
@@ -64,8 +89,8 @@ def load_preprocessed_1(
     geodata: pathlib.Path,
     data: pathlib.Path,
     *,
-    use_pyarrow: bool = False,
-    gpd_kwargs: dict = dict(),
+    use_pyarrow: bool = ARROW_INSTALLED,
+    gpd_kwargs: dict = GPD_READ_KWARGS,
 ) -> gpd.GeoDataFrame:
     """Load already processed data that is formatted and cleaned to be useable here
 
@@ -76,9 +101,9 @@ def load_preprocessed_1(
     data : pathlib.Path
         The file to load the air quality data from. Must contain a column titled CBSAFP.
     use_pyarrow : bool, optional
-        Should pyarrow be used to as a speedup for pd.read_csv, by default False
+        Should pyarrow be used to as a speedup for pd.read_csv, by default `~.ARROW_INSTALLED`
     gpd_kwargs : dict, optional
-        Optional keyword arguments to pass to gpd.read_file, like engine arguments. , by default dict()
+        Optional keyword arguments to pass to gpd.read_file, like engine arguments. , by default `~.GPD_READ_KWARGS`
 
     Returns
     -------
@@ -98,7 +123,7 @@ def load_preprocessed_1(
 def load_preprocessed_2(
     data: pathlib.Path,
     *,
-    gpd_kwargs: dict = dict(),
+    gpd_kwargs: dict = GPD_READ_KWARGS,
 ) -> gpd.GeoDataFrame:
     """Load already processed data that is formatted and cleaned to be useable here
 
@@ -107,7 +132,7 @@ def load_preprocessed_2(
     data : pathlib.Path
         The geojson file to load the health data from.
     gpd_kwargs : dict, optional
-        Optional keyword arguments to pass to gpd.read_file, like engine arguments, by default dict()
+        Optional keyword arguments to pass to gpd.read_file, like engine arguments, by default `~.GPD_READ_KWARGS`
 
     Returns
     -------
@@ -115,6 +140,7 @@ def load_preprocessed_2(
         The loaded preprocessed data
     """
     return gpd.read_file(data, **gpd_kwargs)  # type: ignore
+
 
 def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFrame:
     """Load and do basic processing on the data to remove extraneous information for the health data
@@ -177,7 +203,10 @@ def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFram
 
 
 def load_and_process(
-    years: range, *, use_pyarrow: bool = False, gpd_kwargs: dict = dict()
+    years: range,
+    *,
+    use_pyarrow: bool = ARROW_INSTALLED,
+    gpd_kwargs: dict = GPD_READ_KWARGS,
 ) -> gpd.GeoDataFrame:
     """Load and do basic processing on the data to remove extraneous information.
 
@@ -185,6 +214,10 @@ def load_and_process(
     ----------
     years : range
         Range of years for which to load data for.
+    use_pyarrow : bool, optional
+        Should pyarrow be used to as a speedup for pd.read_csv, by default `~.ARROW_INSTALLED`
+    gpd_kwargs : dict, optional
+        Optional keyword arguments to pass to gpd.read_file, like engine arguments, by default `~.GPD_READ_KWARGS`
 
     Returns
     -------
