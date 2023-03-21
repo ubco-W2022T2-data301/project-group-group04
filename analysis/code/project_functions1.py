@@ -13,7 +13,9 @@ import numpy as np
 __all__: tuple[str, ...] = (
     "PROJECT_ROOT",
     "is_heavy_metal",
+    "load_and_process_healthdata",
     "load_and_process",
+    "load_preprocessed_1",
     "load_toml",
 )
 
@@ -57,7 +59,104 @@ def is_heavy_metal(substance: str) -> bool:
     return any(heavy_metal in substance for heavy_metal in __HEAVY_METALS__)
 
 
-def load_and_process(years: range) -> gpd.GeoDataFrame:
+def load_preprocessed_1(
+    geodata: pathlib.Path,
+    data: pathlib.Path,
+    *,
+    use_pyarrow: bool = False,
+    gpd_kwargs: dict = dict(),
+) -> gpd.GeoDataFrame:
+    """Load already processed data that is formatted and cleaned to be useable here
+
+    Parameters
+    ----------
+    geodata : pathlib.Path
+        The file to load geodata from. Must contain a column titled CBSAFP.
+    data : pathlib.Path
+        The file to load the air quality data from. Must contain a column titled CBSAFP.
+    use_pyarrow : bool, optional
+        Should pyarrow be used to as a speedup for pd.read_csv, by default False
+    gpd_kwargs : dict, optional
+        Optional keyword arguments to pass to gpd.read_file, like engine arguments. , by default dict()
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        The loaded preprocessed data
+    """
+    base = gpd.read_file(geodata, **gpd_kwargs)  # type: ignore
+    base["CBSAFP"] = base["CBSAFP"].astype("float64")
+    return base.merge(  # type: ignore
+        pd.read_csv(data, engine=("pyarrow" if use_pyarrow else None)),
+        how="right",
+        right_on="CBSAFP",
+        left_on="CBSAFP",
+    )
+
+
+def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFrame:
+    """Load and do basic processing on the data to remove extraneous information for the health data
+
+    Parameters
+    ----------
+    use_pyarrow : bool, optional
+        Should pyarrow be used to as a speedup for pd.read_csv, by default False
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        The loaded and processed health data
+    """
+    healthdata = pd.read_csv(
+        PROJECT_ROOT
+        / "data/raw/PLACES__Local_Data_for_Better_Health__Census_Tract_Data_2022_release.csv",
+        usecols=[
+            "StateAbbr",
+            "StateDesc",
+            "CountyName",
+            "CountyFIPS",
+            "LocationName",
+            "Data_Value",
+            "Low_Confidence_Limit",
+            "High_Confidence_Limit",
+            "TotalPopulation",
+            "Geolocation",
+            "LocationID",
+        ],
+        engine=("pyarrow" if use_pyarrow else None),
+    ).loc[lambda frame: ~frame["StateDesc"].isin({"Alaska", "Hawaii"})]
+    healthdata["Longitude"] = healthdata["Geolocation"].apply(
+        lambda x: float(x[7:-1].split(" ")[0])
+    )
+    healthdata["Latitude"] = healthdata["Geolocation"].apply(
+        lambda x: float(x[7:-1].split(" ")[1])
+    )
+    healthdata["Pop_With_Asthma"] = (
+        healthdata["Data_Value"] * healthdata["TotalPopulation"]
+    )
+    healthdata["CountyState"] = (
+        healthdata["CountyName"] + ", " + healthdata["StateAbbr"]
+    )
+    point_based = healthdata.groupby("CountyFIPS")[
+        ["Pop_With_Asthma", "TotalPopulation", "CountyState", "Longitude", "Latitude"]
+    ].agg(
+        {
+            "Pop_With_Asthma": "sum",
+            "TotalPopulation": "sum",
+            "CountyState": "min",
+            "Longitude": "mean",
+            "Latitude": "mean",
+        }
+    )
+    point_based["Percentage"] = (
+        point_based["Pop_With_Asthma"] / point_based["TotalPopulation"]
+    )
+    return gpd.GeoDataFrame(point_based, geometry=gpd.points_from_xy(point_based.Longitude, point_based.Latitude))  # type: ignore
+
+
+def load_and_process(
+    years: range, *, use_pyarrow: bool = False, gpd_kwargs: dict = dict()
+) -> gpd.GeoDataFrame:
     """Load and do basic processing on the data to remove extraneous information.
 
     Parameters
@@ -70,6 +169,7 @@ def load_and_process(years: range) -> gpd.GeoDataFrame:
     gpd.GeoDataFrame
         The loaded and basic processed dataframe with geographic shape data
     """
+    pd_kwargs = {"engine": "pyarrow"} if use_pyarrow else {}
     _years = list(years)
     df = (
         pd.concat(
@@ -89,6 +189,7 @@ def load_and_process(years: range) -> gpd.GeoDataFrame:
                         "Observation Count",
                         "Required Day Count",
                     ],
+                    **pd_kwargs,
                 )
                 for x in _years
             )
@@ -114,6 +215,7 @@ def load_and_process(years: range) -> gpd.GeoDataFrame:
                             "Median AQI",
                             "Days with AQI",
                         ],
+                        **pd_kwargs,
                     )
                     for x in _years
                 )
@@ -191,6 +293,9 @@ def load_and_process(years: range) -> gpd.GeoDataFrame:
             else x
         )
     )
+    df["Max AQI"] = df["Max AQI"].map(
+        lambda x: x if 0 <= x <= 500 else 501 if x > 500 else 0
+    )
     df = (
         df.groupby(["Year", "CBSA Name", "Parameter Name", "CBSA Code"])
         .agg(
@@ -216,14 +321,12 @@ def load_and_process(years: range) -> gpd.GeoDataFrame:
         ]
         .reset_index(drop=True)
     )
-    return (
-        gpd.read_file(
-            PROJECT_ROOT / "data/raw/cb_2018_us_cbsa_500k/cb_2018_us_cbsa_500k.shp"
-        )
-        .merge(
-            df,
-            how="right",
-            left_on="NAME",
-            right_on="CBSA Name",
-        )
+    return gpd.read_file(
+        PROJECT_ROOT / "data/raw/cb_2018_us_cbsa_500k/cb_2018_us_cbsa_500k.shp",
+        **gpd_kwargs,
+    ).merge(  # type: ignore
+        df,
+        how="right",
+        left_on="NAME",
+        right_on="CBSA Name",
     )
