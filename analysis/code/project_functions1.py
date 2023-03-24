@@ -156,8 +156,7 @@ def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFram
         The loaded and processed health data
     """
     healthdata = pd.read_csv(
-        PROJECT_ROOT
-        / "data/raw/PLACES__Local_Data_for_Better_Health__Census_Tract_Data_2022_release.csv",
+        PROJECT_ROOT / "data/raw/PLACES__Local_Data_for_Better_Health__Census_Tract_Data_2022_release.csv",
         usecols=[
             "StateAbbr",
             "StateDesc",
@@ -173,18 +172,10 @@ def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFram
         ],
         engine=("pyarrow" if use_pyarrow else None),
     ).loc[lambda frame: ~frame["StateDesc"].isin({"Alaska", "Hawaii"})]
-    healthdata["Longitude"] = healthdata["Geolocation"].apply(
-        lambda x: float(x[7:-1].split(" ")[0])
-    )
-    healthdata["Latitude"] = healthdata["Geolocation"].apply(
-        lambda x: float(x[7:-1].split(" ")[1])
-    )
-    healthdata["Pop_With_Asthma"] = (
-        healthdata["Data_Value"] * healthdata["TotalPopulation"]
-    )
-    healthdata["CountyState"] = (
-        healthdata["CountyName"] + ", " + healthdata["StateAbbr"]
-    )
+    healthdata["Longitude"] = healthdata["Geolocation"].apply(lambda x: float(x[7:-1].split(" ")[0]))
+    healthdata["Latitude"] = healthdata["Geolocation"].apply(lambda x: float(x[7:-1].split(" ")[1]))
+    healthdata["Pop_With_Asthma"] = healthdata["Data_Value"] * healthdata["TotalPopulation"]
+    healthdata["CountyState"] = healthdata["CountyName"] + ", " + healthdata["StateAbbr"]
     point_based = healthdata.groupby("CountyFIPS")[
         ["Pop_With_Asthma", "TotalPopulation", "CountyState", "Longitude", "Latitude"]
     ].agg(
@@ -196,9 +187,7 @@ def load_and_process_healthdata(*, use_pyarrow: bool = False) -> gpd.GeoDataFram
             "Latitude": "mean",
         }
     )
-    point_based["Percentage"] = (
-        point_based["Pop_With_Asthma"] / point_based["TotalPopulation"]
-    )
+    point_based["Percentage"] = point_based["Pop_With_Asthma"] / point_based["TotalPopulation"]
     return gpd.GeoDataFrame(point_based, geometry=gpd.points_from_xy(point_based.Longitude, point_based.Latitude))  # type: ignore
 
 
@@ -285,16 +274,8 @@ def load_and_process(
             [
                 x["Year"],
                 x["State Name"],
-                (
-                    x["Arithmetic Mean"] * 1000
-                    if x["Units of Measure"] == "Parts per million"
-                    else x["Arithmetic Mean"]
-                ),
-                (
-                    x["Units of Measure"]
-                    if x["Units of Measure"] != "Parts per million"
-                    else "Parts per billion"
-                ),
+                (x["Arithmetic Mean"] * 1000 if x["Units of Measure"] == "Parts per million" else x["Arithmetic Mean"]),
+                (x["Units of Measure"] if x["Units of Measure"] != "Parts per million" else "Parts per billion"),
                 x["Parameter Name"],
                 x["CBSA Code"],
                 x["Max AQI"],
@@ -338,9 +319,7 @@ def load_and_process(
             lambda x: "Ammonium compounds"
             if "Ammonium" in x
             else "Benzenes"
-            if ("Xylene") in x
-            or ("benzene" in x.lower())
-            or (x in {"Toluene", "Styrene"})
+            if ("Xylene") in x or ("benzene" in x.lower()) or (x in {"Toluene", "Styrene"})
             else "Heavy Metals"
             if is_heavy_metal(x)
             else "Various Particulates"
@@ -348,9 +327,7 @@ def load_and_process(
             else x
         )
     )
-    df["Max AQI"] = df["Max AQI"].map(
-        lambda x: x if 0 <= x <= 500 else 501 if x > 500 else 0
-    )
+    df["Max AQI"] = df["Max AQI"].map(lambda x: x if 0 <= x <= 500 else 501 if x > 500 else 0)
     df = (
         df.groupby(["Year", "CBSA Name", "Parameter Name", "CBSA Code"])
         .agg(
@@ -369,9 +346,7 @@ def load_and_process(
         .reset_index()
         .loc[
             lambda x: x["Parameter Name"].isin(
-                i
-                for i in x["Parameter Name"].unique()
-                if len(np.where(x["Parameter Name"] == i)[0]) >= 410
+                i for i in x["Parameter Name"].unique() if len(np.where(x["Parameter Name"] == i)[0]) >= 410
             )
         ]
         .reset_index(drop=True)
