@@ -1,0 +1,19 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Regional Air Quality and its Effect on Asthma Prevalence
+  in the US
+message: >-
+  This was group 4's project for UBC Okanagan's 2022WT2
+  Data301 Course 
+type: software
+authors:
+  - given-names: Gavin
+    family-names: Kendal-Freedman
+  - given-names: Sky
+    family-names: Huang
+repository-code: >-
+  https://github.com/ubco-W2022T2-data301/project-group-group04
+license: MIT
