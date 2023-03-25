@@ -31,4 +31,20 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 
 ## References
 
-{Add your stuff here}
+<a id="1">[1]</a> US Environmental Protection Agency. Air Quality System Data Mart [internet database] available via <https://www.epa.gov/outdoor-air-quality-data>. Accessed January 30, 2023.
+
+<a id="2">[2]</a> PLACES. Centers for Disease Control and Prevention. Accessed January 30, 2023. <https://www.cdc.gov/places>
+
+<a id="3">[3]</a> Aleksey Bilogur. Contiguous USA shapedata from geoplot's sample data available via <https://github.com/ResidentMario/geoplot-data>. Accessed March 2, 2023.
+
+<a id="4">[4]</a> U.S. Census Bureau. 2018 Cartographic Boundary Files - Shapefile [internet database] available via <https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html>. Accessed March 4, 2023.
+
+
+<!--
+
+Can link to these in the following format, using the first number as an example: [[1]](#1)
+
+Also, these can be referenced even from other files, using the syntax [[1]](/README.md#1)
+
+-->
+
