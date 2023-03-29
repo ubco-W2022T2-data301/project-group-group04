@@ -78,7 +78,7 @@ def wrangling(df=processing(), col="Parameter Name", parameter=[True]):
             axis=1,
         )
         .merge(df, on="CBSA Name", how="right")
-        .loc[df[col].isin(parameter) | (parameter == True)]
+        .loc[df[col].isin(parameter) | (parameter == [True])]
     )
 
     # return df2.drop(columns=["Arithmetic Mean"]).merge(df, on="CBSA Name", how="right")
