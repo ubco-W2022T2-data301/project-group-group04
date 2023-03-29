@@ -47,7 +47,7 @@ def processing(
     )
 
 
-def wrangling(df=processing()):
+def wrangling(df=processing(), col="Parameter Name", parameter=[True]):
     # df2 = df[df["Parameter Name"] == "Relative Humidity "]
     # df2 = df2.groupby(["CBSA Name"])[["Arithmetic Mean"]].mean().reset_index()
     # list = []
@@ -78,6 +78,7 @@ def wrangling(df=processing()):
             axis=1,
         )
         .merge(df, on="CBSA Name", how="right")
+        .loc[df[col].isin(parameter) | (parameter == True)]
     )
 
     # return df2.drop(columns=["Arithmetic Mean"]).merge(df, on="CBSA Name", how="right")
