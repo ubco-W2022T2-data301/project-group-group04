@@ -1,9 +1,9 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import geopandas as gpd
 import geoplot as gplt
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
 # aqi = pd.concat(pd.read_csv(f"../data/raw/annual_aqi_by_cbsa_{year}.csv") for year in range(2011, 2023))
 
