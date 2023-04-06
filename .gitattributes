@@ -1,7 +1,7 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
 # Tableau dashboards shouldn't be treated as text or soruce code, don't diff them and treat them as binary
-.twb binary
+.twb binary linguist-generated
 # Photos are truly binary and should not be modified.
 *.png binary
 *.jpg binary
