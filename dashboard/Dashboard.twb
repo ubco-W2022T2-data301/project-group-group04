@@ -38,10 +38,10 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='geodata1' name='ogrdirect.0tjcsrp076xphv0zl86la16gluip'>
-            <connection class='ogrdirect' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
+            <connection class='ogrdirect' directory='../data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
           </named-connection>
           <named-connection caption='fortableau' name='textscan.0polnte065polk14u5q7q0wbwndi'>
-            <connection class='textscan' cleaning='yes' compat='no' csvFile='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed/fortableau.csv' dataRefreshTime='' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='C:/Users/skyan/AppData/Local/Temp/TableauTemp/0tzkwtb0r47omc126j4b1125vzed/fortableau.csv.xlsx' interpretationMode='8' password='' server='' validate='no' />
+            <connection class='textscan' cleaning='yes' compat='no' csvFile='../data/processed/fortableau.csv' dataRefreshTime='' directory='../data/processed' filename='C:/Users/skyan/AppData/Local/Temp/TableauTemp/0tzkwtb0r47omc126j4b1125vzed/fortableau.csv.xlsx' interpretationMode='8' password='' server='' validate='no' />
           </named-connection>
         </named-connections>
         <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0polnte065polk14u5q7q0wbwndi' name='fortableau.csv' table='[fortableau#csv]' type='table'>
@@ -489,13 +489,13 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='geodata1' name='ogrdirect.1p92uvg0rorx3j11bxr6v0qyr9aw'>
-            <connection class='ogrdirect' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
+            <connection class='ogrdirect' directory='../data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
           </named-connection>
           <named-connection caption='processed1' name='textscan.0udj4xi1cth87t19evot31rx0upp'>
-            <connection class='textscan' cleaning='yes' compat='no' csvFile='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed/processed1.csv' dataRefreshTime='' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='processed1.csv' interpretationMode='8' password='' server='' validate='no' />
+            <connection class='textscan' cleaning='yes' compat='no' csvFile='../data/processed/processed1.csv' dataRefreshTime='' directory='../data/processed' filename='processed1.csv' interpretationMode='8' password='' server='' validate='no' />
           </named-connection>
           <named-connection caption='fortableau' name='textscan.1qzqoq813aqo6x17ycz1g1bhcvoe'>
-            <connection class='textscan' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='fortableau.csv' password='' server='' />
+            <connection class='textscan' directory='../data/processed' filename='fortableau.csv' password='' server='' />
           </named-connection>
         </named-connections>
         <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='ogrdirect.1p92uvg0rorx3j11bxr6v0qyr9aw' name='geodata1.geojson' table='[geodata1.geojson]' type='table'>
@@ -1037,7 +1037,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='heath1' name='ogrdirect.0tmy05t05luqns1abad9c1ls60hm'>
-            <connection class='ogrdirect' directory='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
+            <connection class='ogrdirect' directory='../data/processed' filename='geodata1.geojson' password='' server='' tablename='' />
           </named-connection>
         </named-connections>
         <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='ogrdirect.0tmy05t05luqns1abad9c1ls60hm' name='heath1.geojson' table='[heath1.geojson]' type='table'>
@@ -2191,7 +2191,7 @@
                         <format attr='margin' value='4' />
                       </zone-style>
                     </zone>
-                    <zone h='19204' id='19' is-centered='0' is-scaled='1' param='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/images/places-button-white-240x200-1.png' type-v2='bitmap' url='https://www.cdc.gov/places/index.html?s_cid=bb-places-004' w='9828' x='89681' y='79792'>
+                    <zone h='19204' id='19' is-centered='0' is-scaled='1' param='../images/places-button-white-240x200-1.png' type-v2='bitmap' url='https://www.cdc.gov/places/index.html?s_cid=bb-places-004' w='9828' x='89681' y='79792'>
                       <zone-style>
                         <format attr='border-color' value='#000000' />
                         <format attr='border-style' value='none' />
@@ -2315,7 +2315,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='146' h='19204' id='19' is-centered='0' is-fixed='true' is-scaled='1' param='C:/Users/gavin/OneDrive - UBC/Second Year/DATA 301/project-group-group04/images/places-button-white-240x200-1.png' type-v2='bitmap' url='https://www.cdc.gov/places/index.html?s_cid=bb-places-004' w='9828' x='89681' y='79792'>
+                <zone fixed-size='146' h='19204' id='19' is-centered='0' is-fixed='true' is-scaled='1' param='../images/places-button-white-240x200-1.png' type-v2='bitmap' url='https://www.cdc.gov/places/index.html?s_cid=bb-places-004' w='9828' x='89681' y='79792'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
