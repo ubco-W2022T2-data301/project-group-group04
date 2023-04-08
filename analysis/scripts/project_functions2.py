@@ -85,11 +85,6 @@ def mapprep(
     index="CBSA Name",
     values: list[str] = [
         "Median AQI",
-        "Max AQI",
-        "Days CO",
-        "Days NO2",
-        "Days Ozone",
-        "Days PM2.5",
         "Arithmetic Mean",
     ],
     shapefile="../data/raw/cb_2018_us_cbsa_500k/cb_2018_us_cbsa_500k.shp",
