@@ -15,18 +15,12 @@ def processing(
     src2="../data/raw/annual_conc_by_monitor_year.csv",
     columns=[
         "CBSA Name",
+        "CBSA Code",
         "Median AQI",
-        "Max AQI",
-        "90th Percentile AQI",
         "State Name",
         "Pollutant Standard",
         "Method Name",
         "Year",
-        "Days CO",
-        "Days NO2",
-        "Days Ozone",
-        "Days PM2.5",
-        "Days PM10",
         "Parameter Name",
         "Arithmetic Mean",
         "Units of Measure",
@@ -47,7 +41,7 @@ def processing(
     )
 
 
-def wrangling(df=processing()):
+def wrangling(df=processing(), col="Parameter Name", parameter=[True]):
     # df2 = df[df["Parameter Name"] == "Relative Humidity "]
     # df2 = df2.groupby(["CBSA Name"])[["Arithmetic Mean"]].mean().reset_index()
     # list = []
@@ -78,6 +72,7 @@ def wrangling(df=processing()):
             axis=1,
         )
         .merge(df, on="CBSA Name", how="right")
+        .loc[df[col].isin(parameter) | (parameter == [True])]
     )
 
     # return df2.drop(columns=["Arithmetic Mean"]).merge(df, on="CBSA Name", how="right")
@@ -90,11 +85,6 @@ def mapprep(
     index="CBSA Name",
     values: list[str] = [
         "Median AQI",
-        "Max AQI",
-        "Days CO",
-        "Days NO2",
-        "Days Ozone",
-        "Days PM2.5",
         "Arithmetic Mean",
     ],
     shapefile="../data/raw/cb_2018_us_cbsa_500k/cb_2018_us_cbsa_500k.shp",
