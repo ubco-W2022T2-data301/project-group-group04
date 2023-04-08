@@ -15,6 +15,7 @@ def processing(
     src2="../data/raw/annual_conc_by_monitor_year.csv",
     columns=[
         "CBSA Name",
+        "CBSA Code",
         "Median AQI",
         "State Name",
         "Pollutant Standard",
