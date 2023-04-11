@@ -6,6 +6,13 @@ As time proceeds, pollution from industries is steadily making the air quality i
 
 > A summary of the **highlights** of your EDA, where you can show some visualizations of the exploratory data analysis your group did.
 
+For our exploratory analysis, we mostly focused on wether or not there were any correlations that we were expecting, or not expecting. To do that, one of the things we did was aggregate the different air quality parameters into heatmap, which did indicate that some of the expected correlations are there. Furthermore, a choropleth of AQI by region, and point based asthma prevalence was generated to check if there were any potential trends, or if it was truly random. These plots are shown below:
+
+<img src ="images/gavin-heatmap.png" width="500px" alt="Heatmap of parameters">
+
+<img src ="images/gavin-plot-1.png" width="500px" alt="Choropleth of AQI with asthma prevalence overlaid">
+
+
 # Questions and Results
 
 ## Question 1
