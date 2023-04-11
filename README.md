@@ -21,9 +21,9 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 
 <!--{You should use this area to add a screenshot of an interesting plot, or of your dashboard} -->
 
-Sample image of data analysis:
+Sample dashboard for data analysis:
 
-<img src ="images/gavin-plot-1.png" width="500px" alt="Choropleth Heatmap and scatterplot of asthma and AQI data">
+<img src ="images/Dashboard.png" width="500px" alt="Dashboard for one of the analysis questions">
 
 ## References
 
