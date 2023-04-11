@@ -48,6 +48,6 @@ In summary, we can find positive correlations between Ozone Levels, Carbon Monox
 
 <!-- A brief paragraph that highlights your key results and what you learned from doing this project. -->
 
-In conclusion, connections between certain parameters, including but not limited to  carbon monoxide, ozone, sulfur dioxide, and nitro (NOx) compounds do have relatively strong effects on AQI, and a subset of those parameters appear to effect asthma prevalence. Furthermore, across the last 10 years, there have been no statistically significant changes in regional air quality[^1][^4].
+In conclusion, connections between certain parameters, including but not limited to  carbon monoxide, ozone, sulfur dioxide, and nitro (NOx) compounds do have relatively strong effects on AQI, and a subset of those parameters appear to effect asthma prevalence. Furthermore, across the last 10 years, there have been no statistically significant changes in regional air quality[^1] [^4].
 
-[^4] While there are some small changes in median AQI across years, it is not enough to be considered significant. See [this](./images/gavin-aqi-violinplot.png) plot.
+[^4]: While there are some small changes in median AQI across years, it is not enough to be considered significant. See [this](./images/gavin-aqi-violinplot.png) plot.
