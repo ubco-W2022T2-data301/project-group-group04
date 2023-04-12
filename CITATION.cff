@@ -14,6 +14,75 @@ authors:
     family-names: Kendal-Freedman
   - given-names: Sky
     family-names: Huang
+identifiers:
+  - type: url
+    value: >-
+      https://github.com/ubco-W2022T2-data301/project-group-group04/releases/tag/1.0.0
+    description: Release Version
 repository-code: >-
   https://github.com/ubco-W2022T2-data301/project-group-group04
+abstract: >-
+  Brief analysis of air quality and asthma data in the US
+  from the EPA and CDC.
+keywords:
+  - Air Quality
 license: MIT
+version: 1.0.0
+date-released: '2023-04-13'
+references:
+  - title: "Air Data: Air Quality Data Collected at Outdoor Monitors Across the US"
+    publisher:
+      name: "US Environmental Protection Agency"
+    authors:
+      - name: "US Environmental Protection Agency"
+    url: https://www.epa.gov/outdoor-air-quality-data
+    date-accessed: "2023-01-30"
+    date-downloaded: "2023-01-30"
+    scope: "Data Source for all air quality data"
+    data-type: CSV
+    type: data
+  - title: "PLACES: Local Data for Better Health, Census Tract Data"
+    publisher:
+      name: "Centers for Disease Control and Prevention"
+    authors:
+      - name: "Centers for Disease Control and Prevention"
+    url: https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Census-Tract-D/cwsq-ngmh
+    year: 2022
+    date-accessed: "2023-01-30"
+    date-downloaded: "2023-01-30"
+    data-type: CSV
+    scope: "Data Source for PLACES asthma data"
+    keywords:
+      - "places"
+      - "census tract"
+      - "brfss"
+      - "prevalence"
+      - "risk"
+      - "behaviors"
+      - "outcomes"
+      - "prevention"
+      - "health"
+      - "status"
+    type: data
+  - title: "Raw data files used by the geoplot examples and documentation"
+    authors:
+      - given-names: Aleksey
+        family-names: Bilogur
+    repository: https://github.com/ResidentMario/geoplot-data
+    date-accessed: "2023-03-02"
+    date-downloaded: "2023-03-02"
+    data-type: GEOJSON
+    scope: "Geographic Data Source for file `contiguous-usa.geojson`"
+    type: data
+  - title: "2018 Cartographic Boundary Files - Shapefile"
+    publisher:
+      name: "U.S. Census Bureau"
+    authors:
+      - name: "U.S. Census Bureau"
+    url: https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html
+    date-accessed: "2023-03-04"
+    date-downloaded: "2023-03-04"
+    year: 2018
+    data-type: SHAPEFILE
+    scope: "Geographic Data Source for data folders `cb_2018_us_cbsa_5m` and `cb_2018_us_cbsa_500k`"
+    type: data
