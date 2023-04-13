@@ -4,10 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-
-# aqi = pd.concat(pd.read_csv(f"../data/raw/annual_aqi_by_cbsa_{year}.csv") for year in range(2011, 2023))
-
-# concentration = pd.concat(pd.read_csv(f"../data/raw/annual_conc_by_monitor_{year}.csv") for year in range(2011, 2023))
+from pyproj import CRS
 
 
 def processing(
@@ -42,18 +39,6 @@ def processing(
 
 
 def wrangling(df=processing(), col="Parameter Name", parameter=[True]):
-    # df2 = df[df["Parameter Name"] == "Relative Humidity "]
-    # df2 = df2.groupby(["CBSA Name"])[["Arithmetic Mean"]].mean().reset_index()
-    # list = []
-    # for i in df2["Arithmetic Mean"]:
-    #     if i < 40:
-    #         list.append("Dry")
-    #     elif i < 60:
-    #         list.append("Moderate")
-    #     else:
-    #         list.append("Humid")
-    # df2["Dryness"] = list
-
     return (
         df.loc[df["Parameter Name"] == "Relative Humidity "]
         .groupby(["CBSA Name"])[["Arithmetic Mean"]]
@@ -75,24 +60,17 @@ def wrangling(df=processing(), col="Parameter Name", parameter=[True]):
         .loc[df[col].isin(parameter) | (parameter == [True])]
     )
 
-    # return df2.drop(columns=["Arithmetic Mean"]).merge(df, on="CBSA Name", how="right")
-    # df2.assign(Dryness = ("Dry" if x < 40 else "Moderate" if x < 60 else "Humid" for x in df2["Arithmetic Mean"]))
-    # print(df.columns)
-
 
 def mapprep(
     df: pd.DataFrame = wrangling(),
     index="CBSA Name",
-    values: list[str] = [
-        "Median AQI",
-        "Arithmetic Mean",
-    ],
+    values: list[str] = ["Median AQI", "Arithmetic Mean", "Dryness"],
     shapefile="../data/raw/cb_2018_us_cbsa_500k/cb_2018_us_cbsa_500k.shp",
     shapeindex="NAME",
 ):
     return gpd.GeoDataFrame(
         df.groupby([index])[values]
-        .median()
+        .median(numeric_only=True)
         .merge(gpd.read_file(shapefile), how="inner", left_index=True, right_on=shapeindex)
         .dropna(inplace=False)
-    )
+    ).to_crs(CRS.from_user_input("EPSG:4269"))
