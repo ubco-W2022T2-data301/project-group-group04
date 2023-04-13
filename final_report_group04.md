@@ -34,7 +34,7 @@ Also, the [AQI time delta plot](./images/gavin-plot-3.png) and the [violin plot]
 
 Overall, we can find positive correlations between Ozone Levels, Carbon Monoxide, Nitro (NOx) Compounds, with a potential weak correlation with Sulfur Dioxide, an emission from some fuels like diesel and natural gas. Futhermore, There is not a direct correlation between AQI and Crude asthma prevalence in the US, however comparing individual groups of parameters shows that there is a correlation between Ozone, Nitro (NOx) Compounds, and Carbon Monoxide, at least in certain portions of the US (corn and tornado belts/alleys), which show there is not a difference between rural and urban areas necessarily. A final analysis across times showed that AQI does not vary massively across time, at least over the time period investigated, and the minor variations across years are not significant, especially once differences due to wildfire events[^1] have been taken into account.
 
-*Note:* A more in context analysis can be seen in the jupyter notebook from which analysis was done, which can be found [here](./analysis/analysis1.ipynb).
+*Note:* A more in context analysis can be seen in the jupyter notebook from which analysis was done in, which can be found [here](./analysis/analysis1.ipynb).
 
 ## Question 2
 Our second research question, look at the effects of humidity on the air quality, by looking at the AQI and the level of CO, CO2, NO2, and other airborne molecules and particulates at different humidity levels. This is done by separation the data into dry and humid areas, and then looking at the distribution of the pollutants in each area. This is achieved by splitting each CBSA zone into 3 categories using average relative humidity: Dry (relative humidity below 40%), Moderate (relative humidity from 40% to 60%), and Humid (relative humidity above 60%).
@@ -42,6 +42,8 @@ Our second research question, look at the effects of humidity on the air quality
 When looking at the [ridge line plot for pollutants](./images/skyridge1.png) at different humidity levels, no particular correlation between dry and humid areas can be observed, aside from a few outliers like Antimony being more concentrated in dry areas and Barium being less concentrated in humid areas.
 
 Moving on from the analysis of gaseous molecules and particulate matter, the correlation between median AQI (the median is used to prevent outliers from skewing the results) and relative humidity is also analyzed. Overall, it can be observed from the [ridge line plot for AQI over year](./images/skyridge2.png) that the median AQI tends to form a bimodal distribution with one mode around 40 to 60 and the other around 80 to 100. Generally, very few humid areas are found in the second mode. This means, on average, humid regions have lower median AQI than dry regions. Additionally, the second mode for dry areas was centered around an AQI of 120 from 2020 to 2021, which may be due to the recent forest fires in the western US[^1]. This may be the reason why the [scatter plot](./images/skyscatter.png) of median AQI over relative humidity (all years) shows a slight correlation between the two parameters, however, this correlation is not strong enough to be considered significant.
+
+*Note:* A more in depth analysis can be found in the [jupyter notebook](./analysis/analysis2.ipynb) in which analysis was done in.
 
 # Summary
 
