@@ -2,7 +2,7 @@
 
 ## Important
 
-To run this code locally, make sure at a minium all the packages listed in [requirements.txt](requirements.txt) are installed using your package manager of choice (`pip`, `conda`, `poetry`, etc), on at least python 3.9 or higher. However do note that installing [geoplot](https://residentmario.github.io/geoplot) may require installing system dependencies, such as `libgeos-dev` on linux, and may require [pillow](https://pillow.readthedocs.io/en/stable/) to be installed separately. Furthermore, [pyarrow](https://arrow.apache.org/docs/python/index.html) and [pyogrio](https://pyogrio.readthedocs.io/en/latest/index.html) can optionally be installed to speedup I/O operations, especially reads of unprocessed data, and [numba](http://numba.pydata.org/) can also optionally be installed to speed up certain operations that can be vectorized. [numexpr](https://github.com/pydata/numexpr) and [bottleneck](https://github.com/pydata/bottleneck) can also be installed if wished.
+To run this code locally, make sure at a minium all the packages listed in [requirements.txt](requirements.txt) are installed using your package manager of choice (`pip`, `conda`, `poetry`, etc), on at least python 3.9 or higher. However do note that installing [geoplot](https://residentmario.github.io/geoplot) may require installing system dependencies, such as `libgeos-dev` on linux, and may require [pillow](https://pillow.readthedocs.io/en/stable/) to be installed separately. Furthermore, [pyarrow](https://arrow.apache.org/docs/python/index.html) and [pyogrio](https://pyogrio.readthedocs.io/en/latest/index.html) can optionally be installed to speedup I/O operations, especially reads of unprocessed data. [numexpr](https://github.com/pydata/numexpr) and [bottleneck](https://github.com/pydata/bottleneck) can also be installed if wished.
 
 ## Topics and Interests
 
@@ -21,9 +21,9 @@ This dataset is a combination of annual air quality index summaries sorted by CB
 
 <!--{You should use this area to add a screenshot of an interesting plot, or of your dashboard} -->
 
-Sample image of data analysis:
+Sample dashboard for data analysis:
 
-<img src ="images/gavin-plot-1.png" width="500px" alt="Choropleth Heatmap and scatterplot of asthma and AQI data">
+<img src ="images/Dashboard.png" width="500px" alt="Dashboard for one of the analysis questions">
 
 ## References
 

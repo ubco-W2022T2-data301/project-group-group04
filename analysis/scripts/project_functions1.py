@@ -46,7 +46,6 @@ class Config(TypedDict):
 
 ARROW_INSTALLED: Final[bool] = bool(find_spec("pyarrow"))
 PYOGRIO_INSTALLED: Final[bool] = bool(find_spec("pyogrio"))
-NUMBA_INSTALLED: Final[bool] = bool(find_spec("numba"))
 if PYOGRIO_INSTALLED:  # Optional perf enhancements
     GPD_READ_KWARGS: Final[dict[str, str | bool]] = {
         "engine": "pyogrio",
@@ -56,9 +55,6 @@ if PYOGRIO_INSTALLED:  # Optional perf enhancements
 else:
     GPD_READ_KWARGS: Final[dict[str, str | bool]] = {}  # type: ignore
     GPD_WRITE_KWARGS: Final[dict[str, str]] = {}  # type: ignore
-
-if NUMBA_INSTALLED:  # Optional perf enhancements
-    pd.set_option("compute.use_numba", True)
 
 
 PROJECT_ROOT: pathlib.Path = pathlib.Path(__file__).parent.parent.parent.resolve()
