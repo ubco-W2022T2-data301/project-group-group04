@@ -10,9 +10,7 @@ As time proceeds, pollution from industries is steadily making the air quality i
 
 For our exploratory analysis, we mostly focused on wether or not there were any correlations that we were expecting, or not expecting. To do that, one of the things we did was aggregate the different air quality parameters into heatmap, which did indicate that some of the expected correlations are there. Furthermore, a choropleth of AQI by region, and point based asthma prevalence was generated to check if there were any potential trends, or if it was truly random. These plots are shown below:
 
-<img src ="images/gavin-heatmap.png" width="500px" alt="Heatmap of parameters">
-
-<img src ="images/gavin-plot-1.png" width="500px" alt="Choropleth of AQI with asthma prevalence overlaid">
+<img src ="images/gavin-heatmap.png" width="350px" height="350px" alt="Heatmap of parameters"> <img src ="images/gavin-plot-1.png" width="500px" alt="Choropleth of AQI with asthma prevalence overlaid">
 
 # Questions and Results
 
@@ -26,17 +24,16 @@ Looking at the [plot of Max AQI against Crude Asthma prevalence](./images/gavin-
 
 [^1]: [2020 Western US Wildfire Season](https://en.wikipedia.org/wiki/2020_Western_United_States_wildfire_season) - While Wikipedia is not a primary source, it has aggregated information about the extent of wildfires this year, and more complete information is available on the internet if the reader wishes to go into more detail. The exacts of the wildfires are not important for the data analysis here, just that the AQI is highly sample biased on the west coast for 2020.
 
-[^2]: Given the wildfires and as such sampling bias issues identified, the reader may ask why 2020 was chosen as the year for air quality. The asthma data released by the CDC was only for the year 2020 and as such, the most representative year to compare it to air quality was 2020, other years may have different measurements of other populations which could skew analysis further, and since the main particulates from wildfire smoke (PM2.5, PM10, and $\text{CO}_2$) are not being analyzed here, the wildfires will not effect the analysis very much overall.
+[^2]: Given the wildfires and as such sampling bias issues identified, the reader may ask why 2020 was chosen as the year for air quality. The asthma data released by the CDC was only for the year 2020 and as such, the most representative year to compare it to air quality was 2020, other years may have different measurements of other populations which could skew analysis further, and since the main particulates from wildfire smoke (PM2.5, PM10, and CO<sub>2</sub>) are not being analyzed here, the wildfires will not effect the analysis very much overall.
 
 Also, the [AQI time delta plot](./images/gavin-plot-3.png) and the [violin plot](./images/gavin-aqi-violinplot.png) show median AQI across time as deltas and absolutes, which shows that over time, there are fluctuations across the country across years, there are small, temporary fluctuations, but overall AQI tends to have stayed fairly steady over time at median[^3] yearly readings, indicating over time AQI has stayed the same in most regions.  
 
 [^3]: Median readings were chosen here over Max AQI to limit the effects of wildfires as discussed above.
 
-Overall, we can find positive correlations between Ozone Levels, Carbon Monoxide, Nitro (NOx) Compounds, with a potential weak correlation with Sulfur Dioxide, an emission from some fuels like diesel and natural gas. Futhermore, There is not a direct correlation between AQI and Crude asthma prevalence in the US, however comparing individual groups of parameters shows that there is a correlation between Ozone, Nitro (NOx) Compounds, and Carbon Monoxide, at least in certain portions of the US (corn and tornado belts/alleys), which show there is not a difference between rural and urban areas necessarily. A final analysis across times showed that AQI does not vary massively across time, at least over the time period investigated, and the minor variations across years are not significant, especially once differences due to wildfire events[^1] have been taken into account.
-
 *Note:* A more in context analysis can be seen in the jupyter notebook from which analysis was done in, which can be found [here](./analysis/analysis1.ipynb).
 
 ## Question 2
+
 Our second research question, look at the effects of humidity on the air quality, by looking at the AQI and the level of CO, CO2, NO2, and other airborne molecules and particulates at different humidity levels. This is done by separation the data into dry and humid areas, and then looking at the distribution of the pollutants in each area. This is achieved by splitting each CBSA zone into 3 categories using average relative humidity: Dry (relative humidity below 40%), Moderate (relative humidity from 40% to 60%), and Humid (relative humidity above 60%).
 
 When looking at the [ridge line plot for pollutants](./images/skyridge1.png) at different humidity levels, no particular correlation between dry and humid areas can be observed, aside from a few outliers like Antimony being more concentrated in dry areas and Barium being less concentrated in humid areas.
@@ -49,6 +46,6 @@ Moving on from the analysis of gaseous molecules and particulate matter, the cor
 
 <!-- A brief paragraph that highlights your key results and what you learned from doing this project. -->
 
-Overall, connections between certain parameters, including but not limited to  carbon monoxide, ozone, sulfur dioxide, and nitro (NOx) compounds do have relatively strong effects on AQI, and a subset of those parameters appear to effect asthma prevalence. Furthermore, across the last 10 years, there have been no statistically significant changes in regional air quality[^1] [^4]. Additionally, it appears that there is not a statically significant correlation between most pollutants and relative humidity overall. However, it is worth noting that this observation may be influenced by extreme outliers. Additionally, aggregate metrics such as median AQI showed a correlation with high relative humidity during certain years, namely 2020 and 2021, but it is unclear what causes this relationship. Possible explanations include recent forest fires[^1] or differences in the surrounding air quality between dry and humid areas, but more data would be needed to support these hypotheses. Further investigation is required to confirm these findings.
+Overall, connections between certain parameters, including but not limited to  carbon monoxide, ozone, sulfur dioxide, and nitro (NO<sub>x</sub>) compounds do have relatively strong effects on AQI, and a subset of those parameters appear to effect asthma prevalence. Furthermore, across the last 10 years, there have been no statistically significant changes in regional air quality[^1][^4]. Additionally, it appears that there is not a statically significant correlation between most pollutants and relative humidity overall. However, it is worth noting that this observation may be influenced by extreme outliers. Additionally, aggregate metrics such as median AQI showed a correlation with high relative humidity during certain years, namely 2020 and 2021, but it is unclear what causes this relationship. Possible explanations include recent forest fires[^1] or differences in the surrounding air quality between dry and humid areas, but more data would be needed to support these hypotheses. Further investigation is required to confirm these findings.
 
 [^4]: While there are some small changes in median AQI across years, it is not enough to be considered significant. See [this](./images/gavin-aqi-violinplot.png) plot.
